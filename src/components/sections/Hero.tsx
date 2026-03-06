@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Play } from "lucide-react";
+import heroDentist from "@/assets/hero-dentist.jpg";
 
 const Hero = () => (
   <section id="home" className="relative overflow-hidden bg-background">
@@ -54,8 +55,8 @@ const Hero = () => (
           <div className="relative w-full max-w-md">
             <div className="aspect-[3/4] rounded-3xl overflow-hidden bg-accent">
               <img
-                src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&h=800&fit=crop"
-                alt="Professional dentist at Dr Samuel's Dental Clinic"
+                src={heroDentist}
+                alt="Dr Samuel - Professional dentist at Dr Samuel's Dental Clinic"
                 className="w-full h-full object-cover"
                 loading="eager"
               />
