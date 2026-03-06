@@ -14,7 +14,101 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      appointments: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          payment_status: string
+          phone: string
+          preferred_date: string
+          preferred_time: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          payment_status?: string
+          phone: string
+          preferred_date: string
+          preferred_time: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          payment_status?: string
+          phone?: string
+          preferred_date?: string
+          preferred_time?: string
+        }
+        Relationships: []
+      }
+      contact_messages: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          message: string
+          name: string
+          subject: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          message: string
+          name: string
+          subject?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string
+          name?: string
+          subject?: string | null
+        }
+        Relationships: []
+      }
+      payment_records: {
+        Row: {
+          amount: number
+          appointment_id: string | null
+          created_at: string
+          id: string
+          payer_name: string
+          paystack_reference: string
+          status: string
+        }
+        Insert: {
+          amount: number
+          appointment_id?: string | null
+          created_at?: string
+          id?: string
+          payer_name: string
+          paystack_reference: string
+          status?: string
+        }
+        Update: {
+          amount?: number
+          appointment_id?: string | null
+          created_at?: string
+          id?: string
+          payer_name?: string
+          paystack_reference?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payment_records_appointment_id_fkey"
+            columns: ["appointment_id"]
+            isOneToOne: false
+            referencedRelation: "appointments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
