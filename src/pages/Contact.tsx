@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
@@ -19,9 +20,18 @@ const Contact = () => {
       return;
     }
     setLoading(true);
-    await new Promise(r => setTimeout(r, 800));
-    toast({ title: "Message Sent!", description: "We'll get back to you shortly." });
-    setForm({ name: "", email: "", subject: "", message: "" });
+    const { error } = await supabase.from("contact_messages").insert({
+      name: form.name,
+      email: form.email,
+      subject: form.subject || null,
+      message: form.message,
+    });
+    if (error) {
+      toast({ title: "Failed to send", description: error.message, variant: "destructive" });
+    } else {
+      toast({ title: "Message Sent!", description: "We'll get back to you shortly." });
+      setForm({ name: "", email: "", subject: "", message: "" });
+    }
     setLoading(false);
   };
 
@@ -39,7 +49,6 @@ const Contact = () => {
           </div>
 
           <div className="grid lg:grid-cols-3 gap-10">
-            {/* Form */}
             <form onSubmit={handleSubmit} className="lg:col-span-2 space-y-5">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
@@ -64,7 +73,6 @@ const Contact = () => {
               </Button>
             </form>
 
-            {/* Sidebar */}
             <div className="space-y-6">
               <div className="p-6 rounded-2xl border border-border bg-card space-y-4">
                 <h3 className="font-bold text-card-foreground">Clinic Information</h3>
@@ -76,7 +84,6 @@ const Contact = () => {
                 </div>
               </div>
 
-              {/* WhatsApp */}
               <a
                 href={whatsappUrl}
                 target="_blank"

@@ -1,24 +1,27 @@
 import { Sparkles, Heart, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import serviceWhitening from "@/assets/service-whitening.jpg";
+import serviceImplant from "@/assets/service-implant.jpg";
+import serviceCheckup from "@/assets/service-checkup.jpg";
 
 const serviceCards = [
   {
     icon: Sparkles,
     title: "Teeth Whitening",
     description: "Professional teeth whitening treatments to restore your smile's natural brightness and boost your confidence.",
-    image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=400&h=300&fit=crop",
+    image: serviceWhitening,
   },
   {
     icon: Heart,
     title: "Dental Implants",
     description: "Permanent tooth replacement solutions using the latest implant technology for a natural look and feel.",
-    image: "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=400&h=300&fit=crop",
+    image: serviceImplant,
   },
   {
     icon: Shield,
     title: "General Dentistry",
     description: "Comprehensive dental care including check-ups, cleanings, fillings, and preventive treatments.",
-    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=400&h=300&fit=crop",
+    image: serviceCheckup,
   },
 ];
 

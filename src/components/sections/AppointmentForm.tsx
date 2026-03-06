@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Calendar } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const timeSlots = [
   "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM",
@@ -21,10 +21,18 @@ const AppointmentForm = () => {
       return;
     }
     setLoading(true);
-    // Simulate save — will connect to Supabase later
-    await new Promise(r => setTimeout(r, 800));
-    toast({ title: "Appointment Booked!", description: `Thank you ${form.name}, your appointment is set for ${form.date} at ${form.time}.` });
-    setForm({ name: "", phone: "", date: "", time: "" });
+    const { error } = await supabase.from("appointments").insert({
+      name: form.name,
+      phone: form.phone,
+      preferred_date: form.date,
+      preferred_time: form.time,
+    });
+    if (error) {
+      toast({ title: "Booking failed", description: error.message, variant: "destructive" });
+    } else {
+      toast({ title: "Appointment Booked!", description: `Thank you ${form.name}, your appointment is set for ${form.date} at ${form.time}.` });
+      setForm({ name: "", phone: "", date: "", time: "" });
+    }
     setLoading(false);
   };
 
@@ -55,14 +63,12 @@ const AppointmentForm = () => {
           </div>
           <div className="space-y-1.5">
             <label className="text-xs font-medium text-primary-foreground/80">Preferred Date</label>
-            <div className="relative">
-              <Input
-                type="date"
-                value={form.date}
-                onChange={e => setForm(f => ({ ...f, date: e.target.value }))}
-                className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/40"
-              />
-            </div>
+            <Input
+              type="date"
+              value={form.date}
+              onChange={e => setForm(f => ({ ...f, date: e.target.value }))}
+              className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/40"
+            />
           </div>
           <div className="space-y-1.5">
             <label className="text-xs font-medium text-primary-foreground/80">Preferred Time</label>
@@ -77,13 +83,7 @@ const AppointmentForm = () => {
               ))}
             </select>
           </div>
-          <Button
-            type="submit"
-            disabled={loading}
-            variant="secondary"
-            size="lg"
-            className="font-semibold"
-          >
+          <Button type="submit" disabled={loading} variant="secondary" size="lg" className="font-semibold">
             {loading ? "Booking..." : "Book Appointment"}
           </Button>
         </form>
