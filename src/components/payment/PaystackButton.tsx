@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -14,7 +14,7 @@ interface PaystackButtonProps {
   email: string;
   name: string;
   appointmentId: string;
-  amount?: number; // in kobo, default 500000 (₦5,000)
+  amount?: number;
   onSuccess?: () => void;
   onClose?: () => void;
 }
@@ -22,27 +22,32 @@ interface PaystackButtonProps {
 const PaystackButton = ({ email, name, appointmentId, amount = 500000, onSuccess, onClose }: PaystackButtonProps) => {
   const { toast } = useToast();
   const scriptLoaded = useRef(false);
+  const [publicKey, setPublicKey] = useState<string | null>(null);
 
   useEffect(() => {
-    if (scriptLoaded.current) return;
-    if (document.querySelector('script[src*="paystack"]')) {
+    // Load Paystack script
+    if (!scriptLoaded.current && !document.querySelector('script[src*="paystack"]')) {
+      const script = document.createElement("script");
+      script.src = "https://js.paystack.co/v1/inline.js";
+      script.async = true;
+      script.onload = () => { scriptLoaded.current = true; };
+      document.body.appendChild(script);
+    } else {
       scriptLoaded.current = true;
-      return;
     }
-    const script = document.createElement("script");
-    script.src = "https://js.paystack.co/v1/inline.js";
-    script.async = true;
-    script.onload = () => { scriptLoaded.current = true; };
-    document.body.appendChild(script);
+    // Fetch public key
+    supabase.functions.invoke("paystack-key").then(({ data }) => {
+      if (data?.key) setPublicKey(data.key);
+    });
   }, []);
 
   const pay = () => {
-    if (!window.PaystackPop) {
+    if (!window.PaystackPop || !publicKey) {
       toast({ title: "Payment system loading...", description: "Please try again in a moment." });
       return;
     }
     const handler = window.PaystackPop.setup({
-      key: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY,
+      key: publicKey,
       email,
       amount,
       currency: "NGN",
@@ -73,7 +78,8 @@ const PaystackButton = ({ email, name, appointmentId, amount = 500000, onSuccess
   return (
     <button
       onClick={pay}
-      className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[hsl(var(--dental-gold))] text-foreground font-semibold hover:opacity-90 transition-opacity text-sm"
+      disabled={!publicKey}
+      className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[hsl(var(--dental-gold))] text-foreground font-semibold hover:opacity-90 transition-opacity text-sm disabled:opacity-50"
     >
       💳 Pay ₦{(amount / 100).toLocaleString()} Consultation Fee
     </button>
