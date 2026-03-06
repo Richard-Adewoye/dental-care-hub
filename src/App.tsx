@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoadingScreen from "@/components/layout/LoadingScreen";
+import ChatBot from "@/components/chat/ChatBot";
 import Index from "./pages/Index";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
@@ -35,6 +36,7 @@ const App = () => {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
+        <ChatBot />
       </TooltipProvider>
     </QueryClientProvider>
   );
