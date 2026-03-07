@@ -18,18 +18,21 @@ const PaystackButton = ({ email, name, appointmentId, amount = 500000, onSuccess
   const [paying, setPaying] = useState(false);
 
   useEffect(() => {
-    // Load Paystack script
-    const existingScript = document.querySelector('script[src="https://js.paystack.co/v1/inline.js"]');
+    // Load Paystack V2 script
+    const existingScript = document.querySelector('script[src="https://js.paystack.co/v2/inline.js"]');
     if (existingScript) {
-      // Script already exists, check if PaystackPop is available
       if ((window as any).PaystackPop) {
         setScriptReady(true);
       } else {
         existingScript.addEventListener("load", () => setScriptReady(true));
       }
     } else {
+      // Remove old V1 script if present
+      const oldScript = document.querySelector('script[src="https://js.paystack.co/v1/inline.js"]');
+      if (oldScript) oldScript.remove();
+
       const script = document.createElement("script");
-      script.src = "https://js.paystack.co/v1/inline.js";
+      script.src = "https://js.paystack.co/v2/inline.js";
       script.async = true;
       script.onload = () => setScriptReady(true);
       script.onerror = () => {
@@ -42,7 +45,6 @@ const PaystackButton = ({ email, name, appointmentId, amount = 500000, onSuccess
     supabase.functions.invoke("paystack-key").then(({ data, error }) => {
       if (error) {
         console.error("Failed to fetch Paystack key:", error);
-        toast({ title: "Payment setup failed", description: "Could not load payment configuration.", variant: "destructive" });
         return;
       }
       if (data?.key) setPublicKey(data.key);
@@ -50,7 +52,8 @@ const PaystackButton = ({ email, name, appointmentId, amount = 500000, onSuccess
   }, []);
 
   const pay = useCallback(() => {
-    if (!(window as any).PaystackPop) {
+    const PaystackPop = (window as any).PaystackPop;
+    if (!PaystackPop) {
       toast({ title: "Payment system still loading", description: "Please wait a moment and try again." });
       return;
     }
@@ -62,7 +65,8 @@ const PaystackButton = ({ email, name, appointmentId, amount = 500000, onSuccess
     setPaying(true);
 
     try {
-      const handler = (window as any).PaystackPop.setup({
+      const popup = new PaystackPop();
+      popup.newTransaction({
         key: publicKey,
         email,
         amount,
@@ -73,32 +77,31 @@ const PaystackButton = ({ email, name, appointmentId, amount = 500000, onSuccess
             { display_name: "Patient", variable_name: "patient_name", value: name },
           ],
         },
-        callback: async (response: { reference: string }) => {
+        onSuccess: async (transaction: { reference: string }) => {
           try {
             const { error } = await supabase.from("payment_records").insert({
               appointment_id: appointmentId,
               payer_name: name,
-              paystack_reference: response.reference,
+              paystack_reference: transaction.reference,
               amount: amount / 100,
               status: "success",
             });
             if (!error) {
               await supabase.from("appointments").update({ payment_status: "paid" }).eq("id", appointmentId);
             }
-            toast({ title: "Payment Successful! 🎉", description: `Reference: ${response.reference}` });
+            toast({ title: "Payment Successful! 🎉", description: `Reference: ${transaction.reference}` });
             onSuccess?.();
           } catch (err) {
             console.error("Payment record error:", err);
           }
           setPaying(false);
         },
-        onClose: () => {
+        onCancel: () => {
           toast({ title: "Payment cancelled", variant: "destructive" });
           setPaying(false);
           onClose?.();
         },
       });
-      handler.openIframe();
     } catch (err) {
       console.error("Paystack error:", err);
       toast({ title: "Payment error", description: "Could not open payment window. Please try again.", variant: "destructive" });
