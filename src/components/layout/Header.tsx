@@ -30,9 +30,9 @@ const Header = () => {
       <div className="bg-dental-dark text-primary-foreground text-xs py-2">
         <div className="container flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-4 flex-wrap">
-            <span className="flex items-center gap-1"><Phone className="w-3 h-3" /> +234 800 000 0000</span>
+            <span className="flex items-center gap-1"><Phone className="w-3 h-3" /> +234 817 571 9638</span>
             <span className="flex items-center gap-1"><Mail className="w-3 h-3" /> info@drsamueldental.com</span>
-            <span className="hidden md:flex items-center gap-1"><MapPin className="w-3 h-3" /> Lagos, Nigeria</span>
+            <span className="hidden md:flex items-center gap-1"><MapPin className="w-3 h-3" /> Jos, Nigeria</span>
           </div>
           <div className="flex items-center gap-3">
             <span className="opacity-70">Follow us:</span>
