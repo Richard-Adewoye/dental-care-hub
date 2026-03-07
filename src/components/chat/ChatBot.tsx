@@ -90,7 +90,9 @@ const ChatBot = () => {
         className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full dental-gradient text-primary-foreground flex items-center justify-center shadow-xl hover:scale-105 transition-transform"
       >
         <span className="absolute w-14 h-14 rounded-full dental-gradient animate-pulse-ring" />
-        {open ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
+        {open ? <X className="w-6 h-6" /> : (
+          <span className="text-2xl">👩‍⚕️</span>
+        )}
       </button>
 
       {/* Chat modal */}

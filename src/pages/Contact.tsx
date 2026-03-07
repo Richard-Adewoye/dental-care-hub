@@ -35,7 +35,7 @@ const Contact = () => {
     setLoading(false);
   };
 
-  const whatsappUrl = "https://wa.me/PLACEHOLDER?text=" + encodeURIComponent("Hello! I'd like to inquire about dental services at Dr Samuel's Dental Clinic.");
+  const whatsappUrl = "https://wa.me/2348175719638?text=" + encodeURIComponent("Hello! I'd like to inquire about dental services at Dr Samuel's Dental Clinic.");
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -77,9 +77,9 @@ const Contact = () => {
               <div className="p-6 rounded-2xl border border-border bg-card space-y-4">
                 <h3 className="font-bold text-card-foreground">Clinic Information</h3>
                 <div className="space-y-3 text-sm text-muted-foreground">
-                  <p className="flex items-center gap-2"><Phone className="w-4 h-4 text-primary" /> +234 800 000 0000</p>
+                  <p className="flex items-center gap-2"><Phone className="w-4 h-4 text-primary" /> +234 817 571 9638</p>
                   <p className="flex items-center gap-2"><Mail className="w-4 h-4 text-primary" /> info@drsamueldental.com</p>
-                  <p className="flex items-center gap-2"><MapPin className="w-4 h-4 text-primary" /> Lagos, Nigeria</p>
+                  <p className="flex items-center gap-2"><MapPin className="w-4 h-4 text-primary" /> Jos, Nigeria</p>
                   <p className="flex items-center gap-2"><Clock className="w-4 h-4 text-primary" /> Mon - Fri: 8AM - 6PM</p>
                 </div>
               </div>

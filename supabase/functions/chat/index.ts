@@ -9,9 +9,9 @@ const systemPrompt = `You are Dr Samuel's Dental Clinic AI assistant. You help p
 
 Clinic Information:
 - Name: Dr Samuel's Dental Clinic
-- Location: Lagos, Nigeria
+- Location: Jos, Nigeria
 - Hours: Monday - Friday, 8AM - 6PM; Saturday 9AM - 2PM; Sunday Closed
-- Phone: +234 800 000 0000
+- Phone: +234 817 571 9638
 - Email: info@drsamueldental.com
 
 Services offered:
