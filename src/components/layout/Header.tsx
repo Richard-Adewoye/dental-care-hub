@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Phone, Mail, MapPin, Menu, X } from "lucide-react";
+import { Phone, Mail, MapPin, Menu, X, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
@@ -80,6 +80,9 @@ const Header = () => {
             <Link to="/contact" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
               Contact Us
             </Link>
+            <Link to="/admin" className="text-muted-foreground hover:text-primary transition-colors" title="Admin Dashboard">
+              <ShieldCheck className="w-4 h-4" />
+            </Link>
           </div>
 
           <div className="flex items-center gap-3">
@@ -126,6 +129,9 @@ const Header = () => {
             ))}
             <Link to="/contact" className="block py-2 text-sm font-medium text-muted-foreground hover:text-primary" onClick={() => setMobileOpen(false)}>
               Contact Us
+            </Link>
+            <Link to="/admin" className="flex items-center gap-2 py-2 text-sm font-medium text-muted-foreground hover:text-primary" onClick={() => setMobileOpen(false)}>
+              <ShieldCheck className="w-4 h-4" /> Admin
             </Link>
             <Button size="sm" className="w-full mt-2" onClick={() => {
               setMobileOpen(false);
