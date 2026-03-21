@@ -38,6 +38,7 @@
     --dental-light: 228 76% 96%;
     --dental-gold: 40 90% 55%;
     --whatsapp: 142 70% 40%;
+    --sage: 160 18% 68%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -95,6 +96,13 @@
 @layer utilities {
   .dental-gradient {
     background: linear-gradient(135deg, hsl(228 76% 52%) 0%, hsl(228 76% 42%) 100%);
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }
 

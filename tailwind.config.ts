@@ -53,6 +53,7 @@ export default {
           gold: "hsl(var(--dental-gold))",
         },
         whatsapp: "hsl(var(--whatsapp))",
+        sage: "hsl(var(--sage))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
