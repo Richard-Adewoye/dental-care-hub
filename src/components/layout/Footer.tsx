@@ -35,7 +35,7 @@ const Footer = () => (
         <div>
           <h3 className="font-semibold mb-4">Contact Info</h3>
           <ul className="space-y-3 text-sm opacity-70">
-             <li className="flex items-center gap-2"><Phone className="w-4 h-4" /> +234 817 571 9638</li>
+             <li className="flex items-center gap-2"><Phone className="w-4 h-4" /> +234 810 815 5239</li>
             <li className="flex items-center gap-2"><Mail className="w-4 h-4" /> info@drsamueldental.com</li>
             <li className="flex items-center gap-2"><MapPin className="w-4 h-4" /> Jos, Nigeria</li>
           </ul>
