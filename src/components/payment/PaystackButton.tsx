@@ -72,6 +72,7 @@ const PaystackButton = ({ email, name, appointmentId, amount = 500000, onSuccess
         amount,
         currency: "NGN",
         channels: ["card"],
+        bearer: "account",
         ref: `drsamuel_${appointmentId}_${Date.now()}`,
         metadata: {
           custom_fields: [
