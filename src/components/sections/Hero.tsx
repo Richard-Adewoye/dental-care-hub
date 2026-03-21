@@ -31,20 +31,23 @@ const Hero = () => {
   }, [next]);
 
   return (
-    <section id="home" className="relative min-h-screen flex flex-col overflow-hidden">
-      {/* Slideshow background */}
-      <AnimatePresence mode="wait">
+    <section id="home" className="relative min-h-screen flex flex-col overflow-hidden bg-black">
+      {/* Slideshow background — crossfade (no white flash) */}
+      <AnimatePresence initial={false}>
         <motion.div
           key={current}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1.2, ease: "easeInOut" }}
           className="absolute inset-0"
         >
-          <img
+          <motion.img
             src={slides[current].image}
             alt={slides[current].alt}
+            initial={{ scale: 1 }}
+            animate={{ scale: 1.08 }}
+            transition={{ duration: 6, ease: "easeOut" }}
             className="absolute inset-0 w-full h-full object-cover"
             loading="eager"
           />
