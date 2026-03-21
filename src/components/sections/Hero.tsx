@@ -1,13 +1,16 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import heroMan from "@/assets/hero-man.jpg";
+import dental1 from "@/assets/dental-1.jpg";
+import dental2 from "@/assets/dental-2.jpg";
+import dental3 from "@/assets/dental-3.jpg";
+import dental4 from "@/assets/dental-4.jpg";
 
 const slides = [
-  {
-    image: heroMan,
-    alt: "Dr Samuel's Dental Clinic team at work",
-  },
+  { image: dental1, alt: "Patient receiving dental care at Dr Samuel's Clinic" },
+  { image: dental2, alt: "Dental procedure at Dr Samuel's Clinic" },
+  { image: dental3, alt: "Bright healthy smile" },
+  { image: dental4, alt: "Professional dental treatment" },
 ];
 
 const Hero = () => {
