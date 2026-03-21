@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Phone, Mail, MapPin, Menu, X, ShieldCheck } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Menu, X, ShieldCheck, Search } from "lucide-react";
 
 const navLinks = [
   { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
-  { label: "About Us", href: "#about" },
   { label: "Why Choose Us", href: "#why-choose-us" },
 ];
 
@@ -19,51 +18,33 @@ const Header = () => {
     if (!isHome) return;
     e.preventDefault();
     const id = href.replace("#", "");
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setMobileOpen(false);
   };
 
   return (
-    <header className="w-full sticky top-0 z-50">
-      {/* Top info bar */}
-      <div className="bg-dental-dark text-primary-foreground text-xs py-2">
-        <div className="container flex flex-wrap items-center justify-between gap-2">
-          <div className="flex items-center gap-4 flex-wrap">
-            <span className="flex items-center gap-1"><Phone className="w-3 h-3" /> +234 817 571 9638</span>
-            <span className="flex items-center gap-1"><Mail className="w-3 h-3" /> info@drsamueldental.com</span>
-            <span className="hidden md:flex items-center gap-1"><MapPin className="w-3 h-3" /> Jos, Nigeria</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <span className="opacity-70">Follow us:</span>
-            <a href="#" className="hover:opacity-80">FB</a>
-            <a href="#" className="hover:opacity-80">IG</a>
-            <a href="#" className="hover:opacity-80">TW</a>
-          </div>
-        </div>
-      </div>
-
-      {/* Main nav */}
-      <nav className="bg-background/95 backdrop-blur-md border-b border-border">
-        <div className="container flex items-center justify-between h-16">
+    <header className="w-full fixed top-0 z-50">
+      <nav className="bg-transparent">
+        <div className="container flex items-center justify-between h-16 lg:h-20">
+          {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-full dental-gradient flex items-center justify-center">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                 <path d="M12 2C9.5 2 7.5 3 7 5C6.5 7 5 8 4 10C3 12 3 14 4 16C5 18 6 22 8 22C9.5 22 10 20 12 20C14 20 14.5 22 16 22C18 22 19 18 20 16C21 14 21 12 20 10C19 8 17.5 7 17 5C16.5 3 14.5 2 12 2Z" fill="white"/>
               </svg>
             </div>
-            <span className="text-lg font-bold text-foreground">Dr Samuel's</span>
+            <span className="text-lg font-bold text-primary-foreground">Dr Samuel's</span>
           </Link>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-8">
             {navLinks.map(link => (
               isHome ? (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={(e) => handleScroll(e, link.href)}
-                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                  className="text-sm font-medium text-primary-foreground/70 hover:text-primary-foreground transition-colors"
                 >
                   {link.label}
                 </a>
@@ -71,48 +52,46 @@ const Header = () => {
                 <Link
                   key={link.href}
                   to={`/${link.href}`}
-                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                  className="text-sm font-medium text-primary-foreground/70 hover:text-primary-foreground transition-colors"
                 >
                   {link.label}
                 </Link>
               )
             ))}
-            <Link to="/contact" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
-              Contact Us
-            </Link>
-            <Link to="/admin" className="text-muted-foreground hover:text-primary transition-colors" title="Admin Dashboard">
+          </div>
+
+          {/* Right side */}
+          <div className="hidden md:flex items-center gap-3">
+            <Link to="/admin" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors" title="Admin">
               <ShieldCheck className="w-4 h-4" />
+            </Link>
+            <button className="w-9 h-9 rounded-full bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/20 flex items-center justify-center text-primary-foreground/70 hover:text-primary-foreground transition-all">
+              <Search className="w-4 h-4" />
+            </button>
+            <Link
+              to="/contact"
+              className="px-5 py-2 rounded-full bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/20 text-sm font-semibold text-primary-foreground uppercase tracking-wider hover:bg-primary-foreground/20 transition-all"
+            >
+              Contact Us
             </Link>
           </div>
 
-          <div className="flex items-center gap-3">
-            <Button
-              size="sm"
-              className="hidden md:inline-flex"
-              onClick={() => {
-                if (isHome) {
-                  document.getElementById("appointment")?.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
-            >
-              Book Now
-            </Button>
-            <button className="md:hidden p-2" onClick={() => setMobileOpen(!mobileOpen)}>
-              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
+          {/* Mobile toggle */}
+          <button className="md:hidden p-2 text-primary-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
+            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="md:hidden bg-background border-b border-border px-4 pb-4 space-y-2">
+          <div className="md:hidden bg-sage/95 backdrop-blur-lg border-t border-primary-foreground/10 px-4 pb-4 space-y-1">
             {navLinks.map(link => (
               isHome ? (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={(e) => handleScroll(e, link.href)}
-                  className="block py-2 text-sm font-medium text-muted-foreground hover:text-primary"
+                  className="block py-2.5 text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground"
                 >
                   {link.label}
                 </a>
@@ -120,25 +99,19 @@ const Header = () => {
                 <Link
                   key={link.href}
                   to={`/${link.href}`}
-                  className="block py-2 text-sm font-medium text-muted-foreground hover:text-primary"
+                  className="block py-2.5 text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground"
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
                 </Link>
               )
             ))}
-            <Link to="/contact" className="block py-2 text-sm font-medium text-muted-foreground hover:text-primary" onClick={() => setMobileOpen(false)}>
+            <Link to="/contact" className="block py-2.5 text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground" onClick={() => setMobileOpen(false)}>
               Contact Us
             </Link>
-            <Link to="/admin" className="flex items-center gap-2 py-2 text-sm font-medium text-muted-foreground hover:text-primary" onClick={() => setMobileOpen(false)}>
+            <Link to="/admin" className="flex items-center gap-2 py-2.5 text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground" onClick={() => setMobileOpen(false)}>
               <ShieldCheck className="w-4 h-4" /> Admin
             </Link>
-            <Button size="sm" className="w-full mt-2" onClick={() => {
-              setMobileOpen(false);
-              if (isHome) document.getElementById("appointment")?.scrollIntoView({ behavior: "smooth" });
-            }}>
-              Book Now
-            </Button>
           </div>
         )}
       </nav>
