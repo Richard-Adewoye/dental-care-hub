@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { MessageCircle, X, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
 
 type Msg = { role: "user" | "assistant"; content: string };
@@ -87,11 +88,29 @@ const ChatBot = () => {
       {/* Floating button */}
       <button
         onClick={() => setOpen(o => !o)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full dental-gradient text-primary-foreground flex items-center justify-center shadow-xl hover:scale-105 transition-transform"
+        className={cn(
+          "fixed bottom-6 right-6 z-50 shadow-2xl hover:scale-[1.03] transition-all duration-300",
+          open
+            ? "w-14 h-14 rounded-full bg-[#001f3f] flex items-center justify-center"
+            : "rounded-2xl bg-[#001f3f] flex items-center gap-3 px-5 py-3"
+        )}
       >
-        <span className="absolute w-14 h-14 rounded-full dental-gradient animate-pulse-ring" />
-        {open ? <X className="w-6 h-6" /> : (
-          <span className="text-2xl">👩‍⚕️</span>
+        {open ? (
+          <X className="w-6 h-6 text-white" />
+        ) : (
+          <>
+            {/* Glowing teal spinner icon */}
+            <span className="relative flex items-center justify-center w-10 h-10 shrink-0">
+              <span className="absolute inset-0 rounded-full border-2 border-cyan-400/60 animate-spin" style={{ borderTopColor: 'transparent', animationDuration: '2s' }} />
+              <span className="absolute inset-1 rounded-full border-2 border-cyan-300/40 animate-spin" style={{ borderBottomColor: 'transparent', animationDuration: '3s', animationDirection: 'reverse' }} />
+              <span className="w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_12px_4px_rgba(34,211,238,0.5)]" />
+            </span>
+            {/* Text */}
+            <div className="text-left">
+              <p className="text-white font-bold text-sm leading-tight tracking-wide">I'M DAN.</p>
+              <p className="text-white/70 text-xs leading-tight font-light">You can ask me about the dental clinic.</p>
+            </div>
+          </>
         )}
       </button>
 
@@ -99,9 +118,9 @@ const ChatBot = () => {
       {open && (
         <div className="fixed bottom-24 right-6 z-50 w-[360px] max-h-[500px] bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-fade-up">
           {/* Header */}
-          <div className="dental-gradient px-4 py-3 text-primary-foreground">
-            <p className="font-bold text-sm">Dr Samuel's Assistant</p>
-            <p className="text-xs opacity-80">Ask about our services, hours & more</p>
+          <div className="bg-[#001f3f] px-4 py-3 text-white">
+            <p className="font-bold text-sm">DAN — Dr Samuel's Assistant</p>
+            <p className="text-xs text-white/70">Ask about our services, hours & more</p>
           </div>
 
           {/* Messages */}
