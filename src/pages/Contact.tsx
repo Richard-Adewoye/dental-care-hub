@@ -77,7 +77,7 @@ const Contact = () => {
               <div className="p-6 rounded-2xl border border-border bg-card space-y-4">
                 <h3 className="font-bold text-card-foreground">Clinic Information</h3>
                 <div className="space-y-3 text-sm text-muted-foreground">
-                  <p className="flex items-center gap-2"><Phone className="w-4 h-4 text-primary" /> +234 817 571 9638</p>
+                  <p className="flex items-center gap-2"><Phone className="w-4 h-4 text-primary" /> +234 810 815 5239</p>
                   <p className="flex items-center gap-2"><Mail className="w-4 h-4 text-primary" /> info@drsamueldental.com</p>
                   <p className="flex items-center gap-2"><MapPin className="w-4 h-4 text-primary" /> Jos, Nigeria</p>
                   <p className="flex items-center gap-2"><Clock className="w-4 h-4 text-primary" /> Mon - Fri: 8AM - 6PM</p>
