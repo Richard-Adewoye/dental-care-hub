@@ -14,7 +14,7 @@ const Hero = () => (
   <section id="home" className="relative min-h-[90vh] flex flex-col overflow-hidden">
     {/* Split background */}
     <div className="absolute inset-0 flex">
-      <div className="w-full lg:w-1/2 bg-sage" />
+      <div className="w-full lg:w-1/2 bg-primary" />
       <div className="hidden lg:block w-1/2 relative">
         <img
           src={heroMan}
