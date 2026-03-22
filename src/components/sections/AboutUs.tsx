@@ -1,6 +1,6 @@
 import { CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import aboutClinic from "@/assets/about-clinic.jpg";
+import dental5 from "@/assets/dental-5.jpg";
 
 const bullets = [
   "Advanced dental equipment and sterilization protocols",
@@ -16,7 +16,7 @@ const AboutUs = () => (
         <div className="relative">
           <div className="aspect-[4/3] rounded-2xl overflow-hidden">
             <img
-              src={aboutClinic}
+              src={dental5}
               alt="Dental care at Dr Samuel's clinic"
               className="w-full h-full object-cover"
               loading="lazy"
