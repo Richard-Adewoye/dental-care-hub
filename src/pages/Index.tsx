@@ -6,6 +6,8 @@ import AboutUs from "@/components/sections/AboutUs";
 import ServiceRibbon from "@/components/sections/ServiceRibbon";
 import Services from "@/components/sections/Services";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
+import DedicatedCare from "@/components/sections/DedicatedCare";
+import Testimonials from "@/components/sections/Testimonials";
 
 const Index = () => (
   <div className="min-h-screen flex flex-col">
@@ -15,7 +17,9 @@ const Index = () => (
       <AppointmentForm />
       <AboutUs />
       <ServiceRibbon />
+      <DedicatedCare />
       <Services />
+      <Testimonials />
       <ServiceRibbon />
       <WhyChooseUs />
     </main>
