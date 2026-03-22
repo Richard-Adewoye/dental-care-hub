@@ -24,7 +24,7 @@ const Header = () => {
 
   return (
     <header className="w-full fixed top-0 z-50">
-      <nav className="bg-primary/80 backdrop-blur-lg border-b border-primary-foreground/10">
+      <nav className="bg-transparent">
         <div className="container flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
