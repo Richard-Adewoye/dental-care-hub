@@ -1,6 +1,6 @@
 import { CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import aboutClinic from "@/assets/about-clinic.jpg";
+import dental5 from "@/assets/dental-5.jpg";
 
 const bullets = [
   "Advanced dental equipment and sterilization protocols",
