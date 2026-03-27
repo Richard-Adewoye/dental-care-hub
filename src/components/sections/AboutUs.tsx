@@ -33,7 +33,7 @@ const AboutUs = () => (
         <div className="space-y-6">
           <span className="text-xs font-semibold uppercase tracking-wider text-primary">About Us</span>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
-            15 Years of Expertise in Dental Care
+            35+ Years of Experience in Dental Care
           </h2>
           <p className="text-muted-foreground leading-relaxed">
             At Dr Samuel's Dental Clinic, we are dedicated to providing exceptional dental care with a compassionate approach. Our team of experienced professionals uses state-of-the-art technology to ensure you receive the best treatment possible.
