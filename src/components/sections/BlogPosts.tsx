@@ -108,7 +108,7 @@ const BlogPosts = () => {
           {/* Arrows */}
           {canScrollLeft && (
             <button
-              onClick={() => scroll("left")}
+              onClick={() => { scroll("left"); startAutoSlide(); }}
               className="absolute -left-2 md:left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/20 flex items-center justify-center text-primary-foreground hover:bg-primary-foreground/20 transition-all"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -116,7 +116,7 @@ const BlogPosts = () => {
           )}
           {canScrollRight && (
             <button
-              onClick={() => scroll("right")}
+              onClick={() => { scroll("right"); startAutoSlide(); }}
               className="absolute -right-2 md:right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/20 flex items-center justify-center text-primary-foreground hover:bg-primary-foreground/20 transition-all"
             >
               <ChevronRight className="w-5 h-5" />
