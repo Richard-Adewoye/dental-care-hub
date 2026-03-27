@@ -16,7 +16,7 @@ const Footer = () => (
             <span className="text-lg font-bold">Dr Samuel's</span>
           </div>
           <p className="text-sm opacity-70 leading-relaxed">
-            Providing quality dental care with 15+ years of expertise. Your smile is our priority.
+            Providing quality dental care with 35+ years of experience. Your smile is our priority.
           </p>
         </div>
 
@@ -36,7 +36,7 @@ const Footer = () => (
           <h3 className="font-semibold mb-4">Contact Info</h3>
           <ul className="space-y-3 text-sm opacity-70">
              <li className="flex items-center gap-2"><Phone className="w-4 h-4" /> +234 810 815 5239</li>
-            <li className="flex items-center gap-2"><Mail className="w-4 h-4" /> info@drsamueldental.com</li>
+            <li className="flex items-center gap-2"><Mail className="w-4 h-4" /> samawosolu@yahoo.co.uk</li>
             <li className="flex items-center gap-2"><MapPin className="w-4 h-4" /> Jos, Nigeria</li>
           </ul>
         </div>

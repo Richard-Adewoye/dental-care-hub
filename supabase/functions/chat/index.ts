@@ -19,7 +19,7 @@ Clinic Information:
 - Location: Jos, Nigeria
 - Hours: Monday - Friday, 8AM - 6PM; Saturday 9AM - 2PM; Sunday Closed
 - Phone: +234 810 815 5239
-- Email: info@drsamueldental.com
+- Email: samawosolu@yahoo.co.uk
 
 Services offered (with detailed descriptions you can share when patients ask):
 
