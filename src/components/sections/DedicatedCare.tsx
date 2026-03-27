@@ -37,8 +37,7 @@ const DedicatedCare = () => (
       >
         <Button
           size="lg"
-          variant="outline"
-          className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 rounded-full px-8"
+          className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 rounded-full px-8 font-semibold shadow-lg"
           onClick={() => document.getElementById("appointment")?.scrollIntoView({ behavior: "smooth" })}
         >
           Schedule Appointment

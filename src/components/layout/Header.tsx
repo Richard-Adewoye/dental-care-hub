@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ShieldCheck, Search } from "lucide-react";
 
@@ -11,8 +11,16 @@ const navLinks = [
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === "/";
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const handleScroll = (e: React.MouseEvent, href: string) => {
     if (!isHome) return;
@@ -24,7 +32,13 @@ const Header = () => {
 
   return (
     <header className="w-full fixed top-0 z-50">
-      <nav className="bg-transparent">
+      <nav
+        className={`transition-all duration-300 ${
+          scrolled
+            ? "bg-primary/90 backdrop-blur-lg shadow-lg"
+            : "bg-transparent"
+        }`}
+      >
         <div className="container flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
@@ -44,7 +58,7 @@ const Header = () => {
                   key={link.href}
                   href={link.href}
                   onClick={(e) => handleScroll(e, link.href)}
-                  className="text-sm font-medium text-primary-foreground/70 hover:text-primary-foreground transition-colors"
+                  className="text-sm font-medium text-primary-foreground/90 hover:text-primary-foreground transition-colors drop-shadow-sm"
                 >
                   {link.label}
                 </a>
@@ -52,7 +66,7 @@ const Header = () => {
                 <Link
                   key={link.href}
                   to={`/${link.href}`}
-                  className="text-sm font-medium text-primary-foreground/70 hover:text-primary-foreground transition-colors"
+                  className="text-sm font-medium text-primary-foreground/90 hover:text-primary-foreground transition-colors drop-shadow-sm"
                 >
                   {link.label}
                 </Link>
@@ -84,7 +98,7 @@ const Header = () => {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="md:hidden bg-sage/95 backdrop-blur-lg border-t border-primary-foreground/10 px-4 pb-4 space-y-1">
+          <div className="md:hidden bg-primary/95 backdrop-blur-lg border-t border-primary-foreground/10 px-4 pb-4 space-y-1">
             {navLinks.map(link => (
               isHome ? (
                 <a
