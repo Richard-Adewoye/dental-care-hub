@@ -83,7 +83,7 @@ const AppointmentForm = () => {
       <div className="container">
         <form
           onSubmit={handleSubmit}
-          className="dental-gradient rounded-2xl p-6 md:p-8 shadow-2xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-end"
+          className="dental-gradient rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 items-end"
         >
           <div className="space-y-1.5">
             <label className="text-xs font-medium text-primary-foreground/80">Full Name</label>
