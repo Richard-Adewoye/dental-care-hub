@@ -44,6 +44,7 @@ const BlogPosts = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const autoSlideRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const checkScroll = () => {
     const el = scrollRef.current;
@@ -52,23 +53,38 @@ const BlogPosts = () => {
     setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
   };
 
-  useEffect(() => {
-    checkScroll();
-    const el = scrollRef.current;
-    el?.addEventListener("scroll", checkScroll);
-    window.addEventListener("resize", checkScroll);
-    return () => {
-      el?.removeEventListener("scroll", checkScroll);
-      window.removeEventListener("resize", checkScroll);
-    };
-  }, []);
-
   const scroll = (dir: "left" | "right") => {
     const el = scrollRef.current;
     if (!el) return;
     const amount = el.clientWidth * 0.7;
     el.scrollBy({ left: dir === "left" ? -amount : amount, behavior: "smooth" });
   };
+
+  const startAutoSlide = () => {
+    if (autoSlideRef.current) clearInterval(autoSlideRef.current);
+    autoSlideRef.current = setInterval(() => {
+      const el = scrollRef.current;
+      if (!el) return;
+      if (el.scrollLeft >= el.scrollWidth - el.clientWidth - 10) {
+        el.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        scroll("right");
+      }
+    }, 4000);
+  };
+
+  useEffect(() => {
+    checkScroll();
+    startAutoSlide();
+    const el = scrollRef.current;
+    el?.addEventListener("scroll", checkScroll);
+    window.addEventListener("resize", checkScroll);
+    return () => {
+      el?.removeEventListener("scroll", checkScroll);
+      window.removeEventListener("resize", checkScroll);
+      if (autoSlideRef.current) clearInterval(autoSlideRef.current);
+    };
+  }, []);
 
   return (
     <section className="py-20 bg-primary/95 text-primary-foreground relative overflow-hidden">
