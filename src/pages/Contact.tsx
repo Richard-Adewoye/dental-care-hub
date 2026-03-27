@@ -40,7 +40,7 @@ const Contact = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1 py-16">
+      <main className="flex-1 pt-24 pb-16">
         <div className="container">
           <div className="text-center mb-12 space-y-3">
             <span className="text-xs font-semibold uppercase tracking-wider text-primary">Contact Us</span>
