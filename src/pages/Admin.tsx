@@ -70,12 +70,14 @@ const Admin = () => {
     if (!authenticated) return;
 
     const fetchData = async () => {
-      const [apptRes, msgRes] = await Promise.all([
+      const [apptRes, msgRes, blogRes] = await Promise.all([
         supabase.from("appointments").select("*").order("created_at", { ascending: false }),
         supabase.from("contact_messages").select("*").order("created_at", { ascending: false }),
+        supabase.from("blog_posts").select("*").order("created_at", { ascending: false }),
       ]);
       if (apptRes.data) setAppointments(apptRes.data);
       if (msgRes.data) setMessages(msgRes.data);
+      if (blogRes.data) setBlogPosts(blogRes.data as any);
       setLoading(false);
     };
     fetchData();
