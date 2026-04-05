@@ -5,8 +5,10 @@ import { supabase } from "@/integrations/supabase/client";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, Lock, Mail, CalendarDays } from "lucide-react";
+import { Search, Lock, Mail, CalendarDays, FileText } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import BlogEditor from "@/components/admin/BlogEditor";
+import BlogList from "@/components/admin/BlogList";
 
 interface Appointment {
   id: string;
