@@ -9,6 +9,7 @@ import ChatBot from "@/components/chat/ChatBot";
 import Index from "./pages/Index";
 import Contact from "./pages/Contact";
 import Admin from "./pages/Admin";
+import Blog from "./pages/Blog";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -35,6 +36,7 @@ const App = () => {
             <Route path="/" element={<Index />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/blog" element={<Blog />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

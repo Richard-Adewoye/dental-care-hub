@@ -6,6 +6,7 @@ const navLinks = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
+  { label: "Blog", href: "/blog", isRoute: true },
   { label: "Why Choose Us", href: "#why-choose-us" },
 ];
 
@@ -53,7 +54,15 @@ const Header = () => {
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map(link => (
-              isHome ? (
+              link.isRoute ? (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="text-sm font-medium text-primary-foreground/90 hover:text-primary-foreground transition-colors drop-shadow-sm"
+                >
+                  {link.label}
+                </Link>
+              ) : isHome ? (
                 <a
                   key={link.href}
                   href={link.href}
@@ -100,7 +109,16 @@ const Header = () => {
         {mobileOpen && (
           <div className="md:hidden bg-primary/95 backdrop-blur-lg border-t border-primary-foreground/10 px-4 pb-4 space-y-1">
             {navLinks.map(link => (
-              isHome ? (
+              link.isRoute ? (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="block py-2.5 text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ) : isHome ? (
                 <a
                   key={link.href}
                   href={link.href}

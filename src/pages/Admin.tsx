@@ -5,8 +5,10 @@ import { supabase } from "@/integrations/supabase/client";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, Lock, Mail, CalendarDays } from "lucide-react";
+import { Search, Lock, Mail, CalendarDays, FileText } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import BlogEditor from "@/components/admin/BlogEditor";
+import BlogList from "@/components/admin/BlogList";
 
 interface Appointment {
   id: string;
@@ -27,6 +29,17 @@ interface ContactMessage {
   created_at: string;
 }
 
+interface BlogPost {
+  id: string;
+  title: string;
+  content: string;
+  excerpt: string | null;
+  cover_image_url: string | null;
+  published: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
 const ADMIN_NAME = "admin";
 const ADMIN_PASSWORD = "DrSamuel2024";
 
@@ -38,8 +51,11 @@ const Admin = () => {
 
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [messages, setMessages] = useState<ContactMessage[]>([]);
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
+  const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
+  const [creatingPost, setCreatingPost] = useState(false);
 
   const handleLogin = () => {
     if (loginName === ADMIN_NAME && loginPassword === ADMIN_PASSWORD) {
@@ -54,12 +70,14 @@ const Admin = () => {
     if (!authenticated) return;
 
     const fetchData = async () => {
-      const [apptRes, msgRes] = await Promise.all([
+      const [apptRes, msgRes, blogRes] = await Promise.all([
         supabase.from("appointments").select("*").order("created_at", { ascending: false }),
         supabase.from("contact_messages").select("*").order("created_at", { ascending: false }),
+        supabase.from("blog_posts").select("*").order("created_at", { ascending: false }),
       ]);
       if (apptRes.data) setAppointments(apptRes.data);
       if (msgRes.data) setMessages(msgRes.data);
+      if (blogRes.data) setBlogPosts(blogRes.data as any);
       setLoading(false);
     };
     fetchData();
@@ -162,6 +180,9 @@ const Admin = () => {
             <TabsTrigger value="messages" className="gap-2">
               <Mail className="w-4 h-4" /> Messages ({messages.length})
             </TabsTrigger>
+            <TabsTrigger value="blog" className="gap-2">
+              <FileText className="w-4 h-4" /> Blog ({blogPosts.length})
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="appointments">
@@ -244,6 +265,38 @@ const Admin = () => {
             <p className="text-xs text-muted-foreground mt-4">
               Total: {filteredMessages.length} message{filteredMessages.length !== 1 ? "s" : ""}
             </p>
+          </TabsContent>
+
+          <TabsContent value="blog">
+            {editingPost || creatingPost ? (
+              <BlogEditor
+                post={editingPost || undefined}
+                onSaved={() => {
+                  setEditingPost(null);
+                  setCreatingPost(false);
+                  supabase.from("blog_posts").select("*").order("created_at", { ascending: false }).then(({ data }) => {
+                    if (data) setBlogPosts(data as any);
+                  });
+                }}
+                onCancel={() => {
+                  setEditingPost(null);
+                  setCreatingPost(false);
+                }}
+              />
+            ) : (
+              <BlogList
+                posts={blogPosts}
+                search={search}
+                loading={loading}
+                onEdit={(post) => setEditingPost(post)}
+                onNew={() => setCreatingPost(true)}
+                onRefresh={() => {
+                  supabase.from("blog_posts").select("*").order("created_at", { ascending: false }).then(({ data }) => {
+                    if (data) setBlogPosts(data as any);
+                  });
+                }}
+              />
+            )}
           </TabsContent>
         </Tabs>
       </main>
