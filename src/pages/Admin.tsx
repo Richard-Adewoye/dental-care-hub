@@ -51,8 +51,11 @@ const Admin = () => {
 
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [messages, setMessages] = useState<ContactMessage[]>([]);
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
+  const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
+  const [creatingPost, setCreatingPost] = useState(false);
 
   const handleLogin = () => {
     if (loginName === ADMIN_NAME && loginPassword === ADMIN_PASSWORD) {
