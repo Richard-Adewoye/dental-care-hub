@@ -180,6 +180,9 @@ const Admin = () => {
             <TabsTrigger value="messages" className="gap-2">
               <Mail className="w-4 h-4" /> Messages ({messages.length})
             </TabsTrigger>
+            <TabsTrigger value="blog" className="gap-2">
+              <FileText className="w-4 h-4" /> Blog ({blogPosts.length})
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="appointments">
@@ -262,6 +265,38 @@ const Admin = () => {
             <p className="text-xs text-muted-foreground mt-4">
               Total: {filteredMessages.length} message{filteredMessages.length !== 1 ? "s" : ""}
             </p>
+          </TabsContent>
+
+          <TabsContent value="blog">
+            {editingPost || creatingPost ? (
+              <BlogEditor
+                post={editingPost || undefined}
+                onSaved={() => {
+                  setEditingPost(null);
+                  setCreatingPost(false);
+                  supabase.from("blog_posts").select("*").order("created_at", { ascending: false }).then(({ data }) => {
+                    if (data) setBlogPosts(data as any);
+                  });
+                }}
+                onCancel={() => {
+                  setEditingPost(null);
+                  setCreatingPost(false);
+                }}
+              />
+            ) : (
+              <BlogList
+                posts={blogPosts}
+                search={search}
+                loading={loading}
+                onEdit={(post) => setEditingPost(post)}
+                onNew={() => setCreatingPost(true)}
+                onRefresh={() => {
+                  supabase.from("blog_posts").select("*").order("created_at", { ascending: false }).then(({ data }) => {
+                    if (data) setBlogPosts(data as any);
+                  });
+                }}
+              />
+            )}
           </TabsContent>
         </Tabs>
       </main>
