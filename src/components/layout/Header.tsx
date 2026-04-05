@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ShieldCheck, Search } from "lucide-react";
+import InstallButton from "@/components/InstallButton";
 
 const navLinks = [
   { label: "Home", href: "#home" },
