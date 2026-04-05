@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ShieldCheck, Search } from "lucide-react";
+import InstallButton from "@/components/InstallButton";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -91,6 +92,7 @@ const Header = () => {
             <button className="w-9 h-9 rounded-full bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/20 flex items-center justify-center text-primary-foreground/70 hover:text-primary-foreground transition-all">
               <Search className="w-4 h-4" />
             </button>
+            <InstallButton />
             <Link
               to="/contact"
               className="px-5 py-2 rounded-full bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/20 text-sm font-semibold text-primary-foreground uppercase tracking-wider hover:bg-primary-foreground/20 transition-all"
