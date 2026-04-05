@@ -54,7 +54,15 @@ const Header = () => {
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map(link => (
-              isHome ? (
+              link.isRoute ? (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="text-sm font-medium text-primary-foreground/90 hover:text-primary-foreground transition-colors drop-shadow-sm"
+                >
+                  {link.label}
+                </Link>
+              ) : isHome ? (
                 <a
                   key={link.href}
                   href={link.href}
