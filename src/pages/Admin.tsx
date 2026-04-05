@@ -29,6 +29,17 @@ interface ContactMessage {
   created_at: string;
 }
 
+interface BlogPost {
+  id: string;
+  title: string;
+  content: string;
+  excerpt: string | null;
+  cover_image_url: string | null;
+  published: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
 const ADMIN_NAME = "admin";
 const ADMIN_PASSWORD = "DrSamuel2024";
 
