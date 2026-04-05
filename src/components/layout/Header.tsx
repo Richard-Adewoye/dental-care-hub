@@ -109,7 +109,16 @@ const Header = () => {
         {mobileOpen && (
           <div className="md:hidden bg-primary/95 backdrop-blur-lg border-t border-primary-foreground/10 px-4 pb-4 space-y-1">
             {navLinks.map(link => (
-              isHome ? (
+              link.isRoute ? (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="block py-2.5 text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ) : isHome ? (
                 <a
                   key={link.href}
                   href={link.href}
