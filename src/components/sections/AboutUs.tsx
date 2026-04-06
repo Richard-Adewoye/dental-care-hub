@@ -17,7 +17,7 @@ const AboutUs = () => (
           <div className="aspect-[4/3] rounded-2xl overflow-hidden">
             <img
               src={dental5}
-              alt="Dental care at Dr Samuel's clinic"
+              alt="Dental care at Exceptional Dental Care clinic"
               className="w-full h-full object-cover"
               loading="lazy"
             />
