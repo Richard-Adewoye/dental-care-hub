@@ -24,8 +24,8 @@ const AboutUs = () => (
           </div>
           {/* Logo overlay */}
           <div className="absolute bottom-4 left-4 bg-primary text-primary-foreground px-4 py-2 rounded-lg shadow-lg">
-            <p className="text-sm font-bold">Dr Samuel's</p>
-            <p className="text-xs opacity-70">Dental Clinic</p>
+            <p className="text-sm font-bold">Exceptional</p>
+            <p className="text-xs opacity-70">Dental Care</p>
           </div>
         </div>
 
