@@ -7,7 +7,7 @@ const testimonials = [
     number: "1",
     headline: "Painless Cleaning",
     quote:
-      "I used to dread dental cleanings, but Dr Samuel's team made it completely painless. The hygienist was gentle, thorough, and even explained every step. My teeth have never felt this clean!",
+      "I used to dread dental cleanings, but the team at Exceptional Dental Care made it completely painless. The hygienist was gentle, thorough, and even explained every step. My teeth have never felt this clean!",
     name: "Amina J.",
   },
   {
