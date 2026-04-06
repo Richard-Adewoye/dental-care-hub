@@ -76,7 +76,7 @@ const Blog = () => {
                   Dental Health Insights
                 </h1>
                 <p className="text-muted-foreground mt-2 max-w-xl mx-auto">
-                  Expert tips and advice from Dr Samuel's Dental Clinic
+                  Expert tips and advice from Exceptional Dental Care
                 </p>
               </div>
 

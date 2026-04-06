@@ -36,7 +36,7 @@ const AboutUs = () => (
             35+ Years of Experience in Dental Care
           </h2>
           <p className="text-muted-foreground leading-relaxed">
-            At Dr Samuel's Dental Clinic, we are dedicated to providing exceptional dental care with a compassionate approach. Our team of experienced professionals uses state-of-the-art technology to ensure you receive the best treatment possible.
+            At Exceptional Dental Care, we are dedicated to providing outstanding dental care with a compassionate approach. Our team of experienced professionals uses state-of-the-art technology to ensure you receive the best treatment possible.
           </p>
           <ul className="space-y-3">
             {bullets.map((b, i) => (

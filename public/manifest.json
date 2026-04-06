@@ -1,7 +1,7 @@
 {
-  "name": "Dr Samuel's Dental Clinic",
-  "short_name": "Dr Samuel's",
-  "description": "Dr Samuel's Dental Clinic - Quality dental care in Jos, Nigeria",
+  "name": "Exceptional Dental Care",
+  "short_name": "Exceptional DC",
+  "description": "Exceptional Dental Care - Quality dental care in Jos, Nigeria",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#001f3f",

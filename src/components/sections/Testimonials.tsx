@@ -21,7 +21,7 @@ const testimonials = [
     number: "3",
     headline: "Expert Implant",
     quote:
-      "After losing a tooth in an accident, I was nervous about implants. The procedure was smooth, recovery was quick, and the result looks completely natural. I smile freely again thanks to Dr Samuel!",
+      "After losing a tooth in an accident, I was nervous about implants. The procedure was smooth, recovery was quick, and the result looks completely natural. I smile freely again thanks to Exceptional Dental Care!",
     name: "Fatima B.",
   },
 ];

@@ -7,8 +7,8 @@ import dental3 from "@/assets/dental-3.jpg";
 import dental4 from "@/assets/dental-4.jpg";
 
 const slides = [
-  { image: dental1, alt: "Patient receiving dental care at Dr Samuel's Clinic" },
-  { image: dental2, alt: "Dental procedure at Dr Samuel's Clinic" },
+  { image: dental1, alt: "Patient receiving dental care at Exceptional Dental Care" },
+  { image: dental2, alt: "Dental procedure at Exceptional Dental Care" },
   { image: dental3, alt: "Bright healthy smile" },
   { image: dental4, alt: "Professional dental treatment" },
 ];
