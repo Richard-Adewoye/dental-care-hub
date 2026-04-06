@@ -13,7 +13,7 @@ const Footer = () => (
                 <path d="M12 2C9.5 2 7.5 3 7 5C6.5 7 5 8 4 10C3 12 3 14 4 16C5 18 6 22 8 22C9.5 22 10 20 12 20C14 20 14.5 22 16 22C18 22 19 18 20 16C21 14 21 12 20 10C19 8 17.5 7 17 5C16.5 3 14.5 2 12 2Z" fill="white"/>
               </svg>
             </div>
-            <span className="text-lg font-bold">Dr Samuel's</span>
+            <span className="text-lg font-bold">Exceptional Dental Care</span>
           </div>
           <p className="text-sm opacity-70 leading-relaxed">
             Providing quality dental care with 35+ years of experience. Your smile is our priority.
