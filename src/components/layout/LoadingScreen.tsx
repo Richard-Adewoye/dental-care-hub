@@ -23,7 +23,7 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
           </svg>
         </div>
         <h1 className="text-3xl font-bold text-primary-foreground tracking-tight">
-          Dr Samuel's Dental Clinic
+          Exceptional Dental Care
         </h1>
         <div className="w-48 h-1 rounded-full bg-primary-foreground/20 overflow-hidden">
           <div className="h-full bg-primary-foreground rounded-full" style={{ animation: "loader-bar 2s ease-in-out" }} />

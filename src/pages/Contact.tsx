@@ -35,7 +35,7 @@ const Contact = () => {
     setLoading(false);
   };
 
-  const whatsappUrl = "https://wa.me/2348108155239?text=" + encodeURIComponent("Hello! I'd like to inquire about dental services at Dr Samuel's Dental Clinic.");
+  const whatsappUrl = "https://wa.me/2348108155239?text=" + encodeURIComponent("Hello! I'd like to inquire about dental services at Exceptional Dental Care.");
 
   return (
     <div className="min-h-screen flex flex-col">

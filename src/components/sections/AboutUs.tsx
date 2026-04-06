@@ -17,15 +17,15 @@ const AboutUs = () => (
           <div className="aspect-[4/3] rounded-2xl overflow-hidden">
             <img
               src={dental5}
-              alt="Dental care at Dr Samuel's clinic"
+              alt="Dental care at Exceptional Dental Care clinic"
               className="w-full h-full object-cover"
               loading="lazy"
             />
           </div>
           {/* Logo overlay */}
           <div className="absolute bottom-4 left-4 bg-primary text-primary-foreground px-4 py-2 rounded-lg shadow-lg">
-            <p className="text-sm font-bold">Dr Samuel's</p>
-            <p className="text-xs opacity-70">Dental Clinic</p>
+            <p className="text-sm font-bold">Exceptional</p>
+            <p className="text-xs opacity-70">Dental Care</p>
           </div>
         </div>
 
@@ -36,7 +36,7 @@ const AboutUs = () => (
             35+ Years of Experience in Dental Care
           </h2>
           <p className="text-muted-foreground leading-relaxed">
-            At Dr Samuel's Dental Clinic, we are dedicated to providing exceptional dental care with a compassionate approach. Our team of experienced professionals uses state-of-the-art technology to ensure you receive the best treatment possible.
+            At Exceptional Dental Care, we are dedicated to providing outstanding dental care with a compassionate approach. Our team of experienced professionals uses state-of-the-art technology to ensure you receive the best treatment possible.
           </p>
           <ul className="space-y-3">
             {bullets.map((b, i) => (

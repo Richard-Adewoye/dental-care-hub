@@ -7,7 +7,7 @@ const testimonials = [
     number: "1",
     headline: "Painless Cleaning",
     quote:
-      "I used to dread dental cleanings, but Dr Samuel's team made it completely painless. The hygienist was gentle, thorough, and even explained every step. My teeth have never felt this clean!",
+      "I used to dread dental cleanings, but the team at Exceptional Dental Care made it completely painless. The hygienist was gentle, thorough, and even explained every step. My teeth have never felt this clean!",
     name: "Amina J.",
   },
   {
@@ -21,7 +21,7 @@ const testimonials = [
     number: "3",
     headline: "Expert Implant",
     quote:
-      "After losing a tooth in an accident, I was nervous about implants. The procedure was smooth, recovery was quick, and the result looks completely natural. I smile freely again thanks to Dr Samuel!",
+      "After losing a tooth in an accident, I was nervous about implants. The procedure was smooth, recovery was quick, and the result looks completely natural. I smile freely again thanks to Exceptional Dental Care!",
     name: "Fatima B.",
   },
 ];

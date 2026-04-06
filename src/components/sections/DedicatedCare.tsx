@@ -25,7 +25,7 @@ const DedicatedCare = () => (
         transition={{ delay: 0.1 }}
         className="text-primary-foreground/80 text-base md:text-lg leading-relaxed"
       >
-        At Dr Samuel's Dental Clinic, we provide top-quality dental care with a
+        At Exceptional Dental Care, we provide top-quality dental care with a
         personal touch. Our experienced team offers a wide range of services to
         meet your unique needs in a warm and welcoming environment.
       </motion.p>

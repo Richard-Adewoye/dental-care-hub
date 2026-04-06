@@ -119,7 +119,7 @@ const ChatBot = () => {
         <div className="fixed bottom-24 right-6 z-50 w-[360px] max-h-[500px] bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-fade-up">
           {/* Header */}
           <div className="bg-[#001f3f] px-4 py-3 text-white">
-            <p className="font-bold text-sm">DAN — Dr Samuel's Assistant</p>
+            <p className="font-bold text-sm">DAN — Exceptional Dental Care Assistant</p>
             <p className="text-xs text-white/70">Ask about our services, hours & more</p>
           </div>
 
