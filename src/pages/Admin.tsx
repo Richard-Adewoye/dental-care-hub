@@ -5,7 +5,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, Lock, Mail, CalendarDays, FileText } from "lucide-react";
+import { Search, Lock, Mail, CalendarDays, FileText, Trash2 } from "lucide-react";
+import { toast } from "sonner";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import BlogEditor from "@/components/admin/BlogEditor";
 import BlogList from "@/components/admin/BlogList";
@@ -224,9 +225,27 @@ const Admin = () => {
                 </table>
               </div>
             )}
-            <p className="text-xs text-muted-foreground mt-4">
-              Total: {filteredAppointments.length} appointment{filteredAppointments.length !== 1 ? "s" : ""}
-            </p>
+            <div className="flex items-center justify-between mt-4">
+              <p className="text-xs text-muted-foreground">
+                Total: {filteredAppointments.length} appointment{filteredAppointments.length !== 1 ? "s" : ""}
+              </p>
+              {appointments.length > 0 && (
+                <Button
+                  variant="destructive"
+                  size="sm"
+                  className="gap-2"
+                  onClick={async () => {
+                    if (!confirm("Are you sure you want to clear all appointments? This cannot be undone.")) return;
+                    const { error } = await supabase.from("appointments").delete().neq("id", "");
+                    if (error) { toast.error("Failed to clear appointments"); return; }
+                    setAppointments([]);
+                    toast.success("All appointments cleared");
+                  }}
+                >
+                  <Trash2 className="w-4 h-4" /> Clear All
+                </Button>
+              )}
+            </div>
           </TabsContent>
 
           <TabsContent value="messages">
@@ -262,9 +281,27 @@ const Admin = () => {
                 </table>
               </div>
             )}
-            <p className="text-xs text-muted-foreground mt-4">
-              Total: {filteredMessages.length} message{filteredMessages.length !== 1 ? "s" : ""}
-            </p>
+            <div className="flex items-center justify-between mt-4">
+              <p className="text-xs text-muted-foreground">
+                Total: {filteredMessages.length} message{filteredMessages.length !== 1 ? "s" : ""}
+              </p>
+              {messages.length > 0 && (
+                <Button
+                  variant="destructive"
+                  size="sm"
+                  className="gap-2"
+                  onClick={async () => {
+                    if (!confirm("Are you sure you want to clear all messages? This cannot be undone.")) return;
+                    const { error } = await supabase.from("contact_messages").delete().neq("id", "");
+                    if (error) { toast.error("Failed to clear messages"); return; }
+                    setMessages([]);
+                    toast.success("All messages cleared");
+                  }}
+                >
+                  <Trash2 className="w-4 h-4" /> Clear All
+                </Button>
+              )}
+            </div>
           </TabsContent>
 
           <TabsContent value="blog">
