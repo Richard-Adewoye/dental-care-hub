@@ -43,13 +43,14 @@ const Header = () => {
       >
         <div className="container flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full dental-gradient flex items-center justify-center">
+          <Link to="/" className="flex items-center gap-2 shrink-0 mr-8">
+            <div className="w-8 h-8 rounded-full dental-gradient flex items-center justify-center shrink-0">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                 <path d="M12 2C9.5 2 7.5 3 7 5C6.5 7 5 8 4 10C3 12 3 14 4 16C5 18 6 22 8 22C9.5 22 10 20 12 20C14 20 14.5 22 16 22C18 22 19 18 20 16C21 14 21 12 20 10C19 8 17.5 7 17 5C16.5 3 14.5 2 12 2Z" fill="white"/>
               </svg>
             </div>
-            <span className="text-lg font-bold text-primary-foreground">Exceptional Dental Care</span>
+            <span className="text-lg font-bold text-primary-foreground whitespace-nowrap hidden lg:inline">Exceptional Dental Care</span>
+            <span className="text-lg font-bold text-primary-foreground whitespace-nowrap lg:hidden">EDC</span>
           </Link>
 
           {/* Desktop links */}
