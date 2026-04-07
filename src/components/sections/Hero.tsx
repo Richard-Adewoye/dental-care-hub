@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import dental1 from "@/assets/dental-1.jpg";
 import dental2 from "@/assets/dental-2.jpg";
@@ -13,15 +13,40 @@ const slides = [
   { image: dental4, alt: "Professional dental treatment" },
 ];
 
+// Preload all images on mount so they're cached and ready
+const preloadImages = () => {
+  slides.forEach((slide) => {
+    const img = new Image();
+    img.src = slide.image;
+  });
+};
+
 const Hero = () => {
   const [current, setCurrent] = useState(0);
+  const [previous, setPrevious] = useState(0);
+  const isFirstRender = useRef(true);
 
-  const next = useCallback(() => {
-    setCurrent((c) => (c + 1) % slides.length);
+  useEffect(() => {
+    preloadImages();
   }, []);
 
+  const goTo = useCallback((index: number) => {
+    setCurrent((prev) => {
+      setPrevious(prev);
+      return index;
+    });
+  }, []);
+
+  const next = useCallback(() => {
+    goTo((current + 1) % slides.length);
+  }, [current, goTo]);
+
   const prev = useCallback(() => {
-    setCurrent((c) => (c - 1 + slides.length) % slides.length);
+    goTo((current - 1 + slides.length) % slides.length);
+  }, [current, goTo]);
+
+  useEffect(() => {
+    isFirstRender.current = false;
   }, []);
 
   useEffect(() => {
@@ -32,29 +57,35 @@ const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex flex-col overflow-hidden bg-black">
-      {/* Slideshow background — crossfade (no white flash) */}
-      <AnimatePresence initial={false}>
-        <motion.div
-          key={current}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.2, ease: "easeInOut" }}
-          className="absolute inset-0"
-        >
-          <motion.img
-            src={slides[current].image}
-            alt={slides[current].alt}
-            initial={{ scale: 1 }}
-            animate={{ scale: 1.08 }}
-            transition={{ duration: 6, ease: "easeOut" }}
-            className="absolute inset-0 w-full h-full object-cover"
-            loading="eager"
-          />
-          {/* Dark overlay */}
-          <div className="absolute inset-0 bg-black/60" />
-        </motion.div>
-      </AnimatePresence>
+      {/* Previous slide stays visible underneath for seamless crossfade */}
+      <div className="absolute inset-0">
+        <img
+          src={slides[previous].image}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/60" />
+      </div>
+
+      {/* Current slide fades in on top */}
+      <motion.div
+        key={current}
+        initial={{ opacity: isFirstRender.current ? 1 : 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2, ease: "easeInOut" }}
+        className="absolute inset-0"
+      >
+        <motion.img
+          src={slides[current].image}
+          alt={slides[current].alt}
+          initial={{ scale: 1 }}
+          animate={{ scale: 1.08 }}
+          transition={{ duration: 6, ease: "easeOut" }}
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+        />
+        <div className="absolute inset-0 bg-black/60" />
+      </motion.div>
 
       {/* Content */}
       <div className="relative z-10 flex-1 flex flex-col justify-end container pb-16 pt-32">
