@@ -53,7 +53,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-4 lg:gap-6">
             {navLinks.map(link => (
               link.isRoute ? (
                 <Link
