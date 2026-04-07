@@ -51,7 +51,7 @@ const Hero = () => {
 
   useEffect(() => {
     if (slides.length <= 1) return;
-    const timer = setInterval(next, 6000);
+    const timer = setInterval(next, 10000);
     return () => clearInterval(timer);
   }, [next]);
 
@@ -72,7 +72,7 @@ const Hero = () => {
         key={current}
         initial={{ opacity: isFirstRender.current ? 1 : 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1.2, ease: "easeInOut" }}
+        transition={{ duration: 2, ease: "easeInOut" }}
         className="absolute inset-0"
       >
         <motion.img
@@ -80,7 +80,7 @@ const Hero = () => {
           alt={slides[current].alt}
           initial={{ scale: 1 }}
           animate={{ scale: 1.08 }}
-          transition={{ duration: 6, ease: "easeOut" }}
+          transition={{ duration: 10, ease: "easeOut" }}
           className="absolute inset-0 w-full h-full object-cover"
           loading="eager"
         />
