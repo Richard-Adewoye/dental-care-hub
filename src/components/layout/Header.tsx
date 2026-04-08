@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ShieldCheck, Search } from "lucide-react";
 import InstallButton from "@/components/InstallButton";
 import NotificationBell from "@/components/notifications/NotificationBell";
+import SearchOverlay from "@/components/search/SearchOverlay";
 
 const navLinks = [
   { label: "Home", href: "#home" },
