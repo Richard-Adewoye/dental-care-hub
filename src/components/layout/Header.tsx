@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ShieldCheck, Search } from "lucide-react";
 import InstallButton from "@/components/InstallButton";
 import NotificationBell from "@/components/notifications/NotificationBell";
+import SearchOverlay from "@/components/search/SearchOverlay";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -15,6 +16,7 @@ const navLinks = [
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === "/";
 
@@ -87,11 +89,18 @@ const Header = () => {
 
           {/* Right side */}
           <div className="hidden md:flex items-center gap-3">
-            <Link to="/admin" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors" title="Admin">
+            <Link
+              to="/admin"
+              className="w-9 h-9 rounded-full bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/20 flex items-center justify-center text-primary-foreground/70 hover:text-primary-foreground transition-all"
+              title="Admin"
+            >
               <ShieldCheck className="w-4 h-4" />
             </Link>
             <NotificationBell />
-            <button className="w-9 h-9 rounded-full bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/20 flex items-center justify-center text-primary-foreground/70 hover:text-primary-foreground transition-all">
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="w-9 h-9 rounded-full bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/20 flex items-center justify-center text-primary-foreground/70 hover:text-primary-foreground transition-all"
+            >
               <Search className="w-4 h-4" />
             </button>
             <InstallButton />
@@ -151,6 +160,7 @@ const Header = () => {
           </div>
         )}
       </nav>
+      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   );
 };
