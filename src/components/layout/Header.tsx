@@ -160,6 +160,7 @@ const Header = () => {
           </div>
         )}
       </nav>
+      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   );
 };
