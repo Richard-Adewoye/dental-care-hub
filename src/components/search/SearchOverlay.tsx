@@ -11,12 +11,25 @@ interface SearchResult {
 }
 
 const services = [
-  { title: "General Dentistry", description: "Comprehensive dental exams, cleanings, fillings, and preventive care for all ages.", section: "services" },
-  { title: "Cosmetic Dentistry", description: "Teeth whitening, veneers, bonding, and smile makeovers to enhance your appearance.", section: "services" },
-  { title: "Orthodontics", description: "Braces, clear aligners, and bite correction for straighter, healthier teeth.", section: "services" },
-  { title: "Oral Surgery", description: "Tooth extractions, implants, and surgical procedures performed with care.", section: "services" },
-  { title: "Pediatric Dentistry", description: "Gentle, child-friendly dental care designed for your little ones.", section: "services" },
-  { title: "Emergency Care", description: "Urgent dental treatment for toothaches, injuries, and dental emergencies.", section: "services" },
+  { title: "Extractions", description: "Safe and comfortable tooth removal procedures.", section: "services" },
+  { title: "Fillings", description: "Durable restorations to repair cavities.", section: "services" },
+  { title: "Root Canal Treatment", description: "Expert therapy to save infected teeth.", section: "services" },
+  { title: "Tooth Whitening", description: "Professional whitening treatments.", section: "services" },
+  { title: "Pulp Treatment", description: "Specialized care for inner tooth tissue.", section: "services" },
+  { title: "Removal Appliances", description: "Dentures, flexible dentures, orthodontic appliances.", section: "services" },
+  { title: "Topical Fluoride", description: "Protective fluoride to strengthen enamel.", section: "services" },
+  { title: "Fissure Sealants", description: "Protective coatings to prevent cavities.", section: "services" },
+  { title: "Sensitive Teeth Treatment", description: "Treatments to reduce tooth sensitivity.", section: "services" },
+  { title: "Teeth Alignment Consultations", description: "Options for straightening teeth.", section: "services" },
+  { title: "Crowns, Bridges & Implants", description: "Restorative crowns, bridges, and implant planning.", section: "services" },
+  { title: "Veneers – Composite", description: "Custom composite veneers for a beautiful smile.", section: "services" },
+  { title: "Acrylic & Porcelain Bridges", description: "Porcelain fused to metal bridges.", section: "services" },
+  { title: "Outreach & School Visits", description: "Community dental health education.", section: "services" },
+  { title: "Corporate Visits", description: "On-site dental care for organizations.", section: "services" },
+  { title: "Preventive Mouthguards", description: "Custom mouthguards for protection.", section: "services" },
+  { title: "Dietary Counselling", description: "Nutritional guidance for oral health.", section: "services" },
+  { title: "Special Needs Dentistry", description: "Tailored care for special needs patients.", section: "services" },
+  { title: "Geriatric Care", description: "Specialized dental services for older adults.", section: "services" },
 ];
 
 interface Props {

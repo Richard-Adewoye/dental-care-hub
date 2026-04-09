@@ -21,23 +21,30 @@ Clinic Information:
 - Phone: +234 810 815 5239
 - Email: samawosolu@yahoo.co.uk
 
-Services offered (with detailed descriptions you can share when patients ask):
+Services offered (share details when patients ask):
 
-1. **Comprehensive Oral Examinations** — The bedrock of preventive care. Detailed check of teeth, gums, and entire mouth, enhanced by X-rays to uncover hidden problems like bone loss, impacted teeth, or inter-tooth decay.
+1. **Extractions** — Safe and comfortable tooth removal for damaged or problematic teeth.
+2. **Fillings** — Durable, tooth-colored restorations to repair cavities and restore tooth structure.
+3. **Root Canal Treatment** — Expert endodontic therapy to save infected teeth and relieve pain.
+4. **Tooth Whitening** — Professional whitening treatments to brighten your smile by several shades.
+5. **Pulp Treatment** — Specialized care for the inner tooth tissue to preserve natural teeth.
+6. **Removal Appliances** — Dentures, flexible dentures, removable orthodontic appliances, space maintainers, and habit breakers.
+7. **Topical Fluoride** — Protective fluoride application to strengthen enamel and prevent decay.
+8. **Fissure Sealants** — Thin protective coatings applied to chewing surfaces to prevent cavities.
+9. **Treatment for Sensitive Teeth** — Targeted treatments to reduce tooth sensitivity and discomfort.
+10. **Consultations to Align Teeth** — Expert consultations to explore options for straightening teeth.
+11. **Teeth Whitening** — Advanced professional whitening for a brighter, more confident smile.
+12. **Crowns, Bridges & Consultation for Implants** — Restorative solutions including crowns, bridges, and implant planning.
+13. **Veneers – Composite** — Custom composite veneers for a natural, beautiful smile transformation.
+14. **Acrylic & Porcelain Fused to Metal Bridges** — Reliable tooth replacement with acrylic or porcelain fused to metal bridges.
+15. **Outreach Planning & School Visits** — Community dental health education and preventive care at schools.
+16. **Corporate Visits (Banks)** — On-site dental check-ups and care programs for banks and corporate organizations.
+17. **Preventive Mouthguards** — Custom-made mouthguards to protect teeth during sports and from grinding.
+18. **Dietary Counselling** — Nutritional guidance to support optimal oral health and prevent dental issues.
+19. **Special Needs Dentistry** — Compassionate, tailored dental care for patients with special needs.
+20. **Geriatric Care** — Gentle, specialized dental services designed for older adults.
 
-2. **Professional Teeth Cleaning (Prophylaxis)** — ₦5,000. Hygienists eliminate plaque and tartar that daily brushing can't touch. Wards off gum disease and cavities while polishing teeth for a smooth, fresh finish.
-
-3. **Restorative Fillings** — ₦10,000. Precise removal of decayed material, filled with durable, tooth-colored composite resin that seamlessly matches natural teeth, restoring function and appearance.
-
-4. **Root Canal Therapy** — ₦4,000. Saves severely infected or decayed teeth by extracting damaged pulp, cleaning the canal, and sealing it — preserving the natural tooth without extraction.
-
-5. **Periodontal (Gum) Treatment** — ₦15,000. Deep cleaning techniques like scaling and root planing remove deep-seated bacteria below the gum line, promoting tissue reattachment and gum health.
-
-6. **Crowns and Bridges** — ₦12,000. Crowns encase and strengthen a single compromised tooth; bridges span gaps from missing teeth, mimicking natural dentition.
-
-7. **Professional Teeth Whitening** — ₦20,000. High-concentration bleaching agents with advanced light technology safely erase deep stains, delivering several shades brighter results in one session.
-
-When discussing prices, present them naturally. Patients can pre-pay online after booking via the website.
+When discussing services, present them naturally. Patients can pre-pay online after booking via the website.
 
 Keep responses concise but warm. Use markdown for formatting when appropriate.`;
 
