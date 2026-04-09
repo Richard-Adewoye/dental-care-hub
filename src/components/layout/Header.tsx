@@ -10,7 +10,7 @@ const navLinks = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Blog", href: "/blog", isRoute: true },
-  { label: "Why Choose Us", href: "#why-choose-us" },
+  { label: "Contact", href: "/contact", isRoute: true },
 ];
 
 const Header = () => {
@@ -56,7 +56,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-4 lg:gap-6">
+          <div className="hidden md:flex items-center gap-3 lg:gap-5">
             {navLinks.map(link => (
               link.isRoute ? (
                 <Link
@@ -104,12 +104,12 @@ const Header = () => {
               <Search className="w-4 h-4" />
             </button>
             <InstallButton />
-            <Link
-              to="/contact"
-              className="px-5 py-2 rounded-full bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/20 text-sm font-semibold text-primary-foreground uppercase tracking-wider hover:bg-primary-foreground/20 transition-all"
+            <button
+              onClick={() => document.getElementById("appointment")?.scrollIntoView({ behavior: "smooth" })}
+              className="px-5 py-2 rounded-full bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/20 text-sm font-semibold text-primary-foreground uppercase tracking-wider hover:bg-primary-foreground/20 transition-all whitespace-nowrap"
             >
-              Contact Us
-            </Link>
+              Book Now
+            </button>
           </div>
 
           {/* Mobile toggle */}
