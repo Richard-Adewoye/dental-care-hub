@@ -16,7 +16,11 @@ interface BlogPost {
   excerpt: string;
   cover_image_url: string;
   published: boolean;
+  slug?: string;
 }
+
+const generateSlug = (title: string) =>
+  title.toLowerCase().replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
 
 interface TopicSuggestion {
   title: string;
