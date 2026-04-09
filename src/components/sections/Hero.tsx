@@ -13,42 +13,57 @@ const slides = [
   { image: dental4, alt: "Professional dental treatment" },
 ];
 
-// Preload all images on mount so they're cached and ready
-const preloadImages = () => {
-  slides.forEach((slide) => {
-    const img = new Image();
-    img.src = slide.image;
-  });
-};
-
 const Hero = () => {
   const [current, setCurrent] = useState(0);
-  const [previous, setPrevious] = useState(0);
-  const isFirstRender = useRef(true);
+  const [displayIndex, setDisplayIndex] = useState(0);
+  const [ready, setReady] = useState(false);
+  const imagesLoaded = useRef(false);
 
+  // Preload all images once and mark ready
   useEffect(() => {
-    preloadImages();
-  }, []);
-
-  const goTo = useCallback((index: number) => {
-    setCurrent((prev) => {
-      setPrevious(prev);
-      return index;
+    if (imagesLoaded.current) return;
+    let loaded = 0;
+    slides.forEach((slide) => {
+      const img = new Image();
+      img.src = slide.image;
+      img.onload = () => {
+        loaded++;
+        if (loaded === slides.length) {
+          imagesLoaded.current = true;
+          setReady(true);
+        }
+      };
+      img.onerror = () => {
+        loaded++;
+        if (loaded === slides.length) {
+          imagesLoaded.current = true;
+          setReady(true);
+        }
+      };
     });
   }, []);
 
-  const next = useCallback(() => {
-    goTo((current + 1) % slides.length);
-  }, [current, goTo]);
-
-  const prev = useCallback(() => {
-    goTo((current - 1 + slides.length) % slides.length);
-  }, [current, goTo]);
-
-  useEffect(() => {
-    isFirstRender.current = false;
+  const goTo = useCallback((index: number) => {
+    setCurrent(index);
   }, []);
 
+  const next = useCallback(() => {
+    setCurrent((prev) => (prev + 1) % slides.length);
+  }, []);
+
+  const prev = useCallback(() => {
+    setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
+  }, []);
+
+  // After crossfade completes, update displayIndex to match current
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDisplayIndex(current);
+    }, 2000); // match CSS transition duration
+    return () => clearTimeout(timer);
+  }, [current]);
+
+  // Auto-advance
   useEffect(() => {
     if (slides.length <= 1) return;
     const timer = setInterval(next, 10000);
@@ -57,40 +72,35 @@ const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex flex-col overflow-hidden bg-black">
-      {/* Previous slide stays visible underneath for seamless crossfade */}
-      <div className="absolute inset-0">
-        <img
-          src={slides[previous].image}
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/60" />
-      </div>
-
-      {/* Current slide fades in on top */}
-      <motion.div
-        key={current}
-        initial={{ opacity: isFirstRender.current ? 1 : 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 2, ease: "easeInOut" }}
-        className="absolute inset-0"
-      >
-        <motion.img
-          src={slides[current].image}
-          alt={slides[current].alt}
-          initial={{ scale: 1 }}
-          animate={{ scale: 1.08 }}
-          transition={{ duration: 10, ease: "easeOut" }}
-          className="absolute inset-0 w-full h-full object-cover"
-          loading="eager"
-        />
-        <div className="absolute inset-0 bg-black/60" />
-      </motion.div>
+      {/* All slides stacked — only current one is opacity-100 */}
+      {slides.map((slide, i) => (
+        <div
+          key={i}
+          className="absolute inset-0"
+          style={{
+            opacity: i === current ? 1 : 0,
+            transition: "opacity 2s ease-in-out",
+            zIndex: i === current ? 2 : i === displayIndex ? 1 : 0,
+          }}
+        >
+          <img
+            src={slide.image}
+            alt={slide.alt}
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+            decoding="sync"
+            style={{
+              transform: i === current && ready ? "scale(1.08)" : "scale(1)",
+              transition: "transform 10s ease-out",
+            }}
+          />
+          <div className="absolute inset-0 bg-black/60" />
+        </div>
+      ))}
 
       {/* Content */}
       <div className="relative z-10 flex-1 flex flex-col justify-end container pb-16 pt-32">
         <div className="grid lg:grid-cols-2 gap-8 items-end">
-          {/* Left — headline */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -103,7 +113,6 @@ const Hero = () => {
             </h1>
           </motion.div>
 
-          {/* Right — description + CTA */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -125,7 +134,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Navigation arrows — only show when multiple slides */}
+      {/* Navigation arrows */}
       {slides.length > 1 && (
         <div className="absolute bottom-6 right-6 z-20 flex gap-2">
           <button
