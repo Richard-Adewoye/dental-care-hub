@@ -57,6 +57,7 @@ const BlogEditor = ({ post, onSaved, onCancel }: BlogEditorProps) => {
           excerpt: excerpt.trim() || null,
           cover_image_url: coverUrl.trim() || null,
           published,
+          slug: generateSlug(title.trim()),
           updated_at: new Date().toISOString(),
         }).eq("id", post.id);
         if (error) throw error;
@@ -68,6 +69,7 @@ const BlogEditor = ({ post, onSaved, onCancel }: BlogEditorProps) => {
           excerpt: excerpt.trim() || null,
           cover_image_url: coverUrl.trim() || null,
           published,
+          slug: generateSlug(title.trim()),
         });
         if (error) throw error;
         toast.success("Post created!");
