@@ -1,12 +1,18 @@
 const services = [
-  "General Dentistry",
-  "Teeth Whitening",
-  "Dental Implant",
-  "Dental Sealant",
-  "Orthodontics",
+  "Extractions",
+  "Fillings",
   "Root Canal",
-  "Cosmetic Dentistry",
-  "Pediatric Dentistry",
+  "Tooth Whitening",
+  "Pulp Treatment",
+  "Dentures",
+  "Fluoride",
+  "Fissure Sealants",
+  "Sensitive Teeth",
+  "Alignments",
+  "Crowns & Bridges",
+  "Veneers",
+  "Mouthguards",
+  "Geriatric Care",
 ];
 
 const ServiceRibbon = () => (
