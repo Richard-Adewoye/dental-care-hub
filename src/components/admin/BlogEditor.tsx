@@ -16,7 +16,11 @@ interface BlogPost {
   excerpt: string;
   cover_image_url: string;
   published: boolean;
+  slug?: string;
 }
+
+const generateSlug = (title: string) =>
+  title.toLowerCase().replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
 
 interface TopicSuggestion {
   title: string;
@@ -53,6 +57,7 @@ const BlogEditor = ({ post, onSaved, onCancel }: BlogEditorProps) => {
           excerpt: excerpt.trim() || null,
           cover_image_url: coverUrl.trim() || null,
           published,
+          slug: generateSlug(title.trim()),
           updated_at: new Date().toISOString(),
         }).eq("id", post.id);
         if (error) throw error;
@@ -64,6 +69,7 @@ const BlogEditor = ({ post, onSaved, onCancel }: BlogEditorProps) => {
           excerpt: excerpt.trim() || null,
           cover_image_url: coverUrl.trim() || null,
           published,
+          slug: generateSlug(title.trim()),
         });
         if (error) throw error;
         toast.success("Post created!");
